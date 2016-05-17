@@ -1,0 +1,8 @@
+.gitignore
+.idea
+service/target
+client/target
+dagong-evaluation.iml
+dagong-evaluation.ipr
+dagong-evaluation.iws
+service/evaluation-service.iml
