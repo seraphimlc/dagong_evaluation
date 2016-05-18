@@ -10,30 +10,45 @@
             <property name="suppressDate" value="false"/>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://172.16.54.144:3306/dagong" userId="root" password="nirvana"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://172.16.54.144:3306/evaluation" userId="root" password="nirvana"/>
 
         <javaModelGenerator targetPackage="com.dagong.pojo"
-                            targetProject="/Users/liuchang/Documents/workspace/projects/dagong/src/main/java">
+                            targetProject="/Users/liuchang/Documents/workspace/projects/dagong_evaluation/service/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="com.dagong.mapper"
-                         targetProject="/Users/liuchang/Documents/workspace/projects/dagong/src/main/resources">
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="/Users/liuchang/Documents/workspace/projects/dagong_evaluation/service/src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <javaClientGenerator targetPackage="com.dagong.mapper"
-                             targetProject="/Users/liuchang/Documents/workspace/projects/dagong/src/main/java" type="XMLMAPPER">
+                             targetProject="/Users/liuchang/Documents/workspace/projects/dagong_evaluation/service/src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
-        <!--<table tableName="applylog" domainObjectName="ApplyLog"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
 
-        <!--</table>-->
+
+        <table tableName="companyevaluation" domainObjectName="CompanyEvaluation"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
+        <table tableName="jobevaluation" domainObjectName="JobEvaluation"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
+        <table tableName="userevaluation" domainObjectName="UserEvaluation"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
+
         <!--<table tableName="applyrecord" domainObjectName="ApplyRecord"-->
                <!--enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false"-->

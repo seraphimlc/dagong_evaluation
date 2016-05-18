@@ -53,14 +53,14 @@ public class SendMessageService {
         System.out.println("sendResult = " + sendResult.getMsgId() + ":" + sendResult.getSendStatus());
     }
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        Map map = new HashMap<String,Object>();
-        map.put("aaaa","bbbb");
-        System.out.println("new String(JSON.toJSONBytes(map)) = " + new String(JSON.toJSONBytes(map)));
-        String bbb="asdfjklasdfasfd";
-        System.out.println("JSON.toJSONBytes(bbb) = " + JSON.toJSONBytes(bbb));
-        String jobId = new String(JSON.toJSONBytes(bbb),"UTF-8");
-        System.out.println("jobId = " + jobId);
-    }
+//    public static void main(String[] args) throws UnsupportedEncodingException {
+//        Map map = new HashMap<String,Object>();
+//        map.put("aaaa","bbbb");
+//        System.out.println("new String(JSON.toJSONBytes(map)) = " + new String(JSON.toJSONBytes(map)));
+//        String bbb="asdfjklasdfasfd";
+//        System.out.println("JSON.toJSONBytes(bbb) = " + JSON.toJSONBytes(bbb));
+//        String jobId = new String(JSON.toJSONBytes(bbb),"UTF-8");
+//        System.out.println("jobId = " + jobId);
+//    }
 
 }
