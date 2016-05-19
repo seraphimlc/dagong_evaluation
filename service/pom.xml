@@ -147,10 +147,12 @@
         <artifactId>classmate</artifactId>
         <version>1.0.0</version>
     </dependency>
+
     <dependency>
         <groupId>com.gome.architect</groupId>
         <artifactId>idgenerator</artifactId>
     </dependency>
+
     <dependency>
         <groupId>org.apache.poi</groupId>
         <artifactId>poi</artifactId>
@@ -188,6 +190,12 @@
     <dependency>
         <groupId>com.dagong</groupId>
         <artifactId>user-client</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.dagong</groupId>
+        <artifactId>job-client</artifactId>
         <version>1.0-SNAPSHOT</version>
     </dependency>
 

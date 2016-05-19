@@ -2,10 +2,12 @@ package com.dagong.mapper;
 
 import com.dagong.pojo.UserEvaluation;
 
+import java.util.List;
+
 public interface UserEvaluationMapper {
     int deleteByPrimaryKey(String id);
 
-    int insert(UserEvaluation record);
+    List<UserEvaluation> getList(UserEvaluation record);
 
     int insertSelective(UserEvaluation record);
 
@@ -13,5 +15,4 @@ public interface UserEvaluationMapper {
 
     int updateByPrimaryKeySelective(UserEvaluation record);
 
-    int updateByPrimaryKey(UserEvaluation record);
 }

@@ -2,10 +2,12 @@ package com.dagong.mapper;
 
 import com.dagong.pojo.JobEvaluation;
 
+import java.util.List;
+
 public interface JobEvaluationMapper {
     int deleteByPrimaryKey(String id);
 
-    int insert(JobEvaluation record);
+    List<JobEvaluation> getList(JobEvaluation record);
 
     int insertSelective(JobEvaluation record);
 
@@ -13,5 +15,4 @@ public interface JobEvaluationMapper {
 
     int updateByPrimaryKeySelective(JobEvaluation record);
 
-    int updateByPrimaryKey(JobEvaluation record);
 }
