@@ -11,4 +11,9 @@ public class CompanyEvaluation extends Evaluation {
     public void setCompanyId(String companyId) {
         this.companyId = companyId;
     }
+
+    @Override
+    public String getType() {
+        return "company";
+    }
 }

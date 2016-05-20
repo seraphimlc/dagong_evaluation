@@ -46,48 +46,19 @@ public class SearchService {
     }
 
 
-    public boolean createJobEvaluation(List<Evaluation> list) {
 
-        return createEvaluation(list, JOB_EVALUATION_TYPE);
+
+
+    public List<Map> searchJobEvaluation(String jobId, int page,int pageSize) {
+        return search(JOB_EVALUATION_TYPE, "jobId", jobId, page,pageSize);
     }
 
-    public boolean createUserEvaluation(List<Evaluation> list) {
-
-        return createEvaluation(list, USER_EVALUATION_TYPE);
+    public List<Map> searchUserEvaluation(String userId, int page,int pageSize) {
+        return search(USER_EVALUATION_TYPE, "userId", userId, page,pageSize);
     }
 
-    public boolean createCompanyEvaluation(List<Evaluation> list) {
-
-        return createEvaluation(list, COMPANY_EVALUATION_TYPE);
-    }
-
-
-    public boolean updateJobEvaluation(List<Evaluation> list) {
-
-        return updateEvaluation(list, JOB_EVALUATION_TYPE);
-    }
-
-    public boolean updateUserEvaluation(List<Evaluation> list) {
-
-        return updateEvaluation(list, USER_EVALUATION_TYPE);
-    }
-
-    public boolean updateCompanyEvaluation(List<Evaluation> list) {
-
-        return updateEvaluation(list, COMPANY_EVALUATION_TYPE);
-    }
-
-
-    public List<Map> searchJobEvaluation(String jobId, int page) {
-        return search(JOB_EVALUATION_TYPE, "jobId", jobId, page);
-    }
-
-    public List<Map> searchUserEvaluation(String userId, int page) {
-        return search(USER_EVALUATION_TYPE, "userId", userId, page);
-    }
-
-    public List<Map> searchCompanyEvaluation(String companyId, int page) {
-        return search(COMPANY_EVALUATION_TYPE, "companyId", companyId, page);
+    public List<Map> searchCompanyEvaluation(String companyId, int page,int pageSize) {
+        return search(COMPANY_EVALUATION_TYPE, "companyId", companyId, page,pageSize);
     }
 
     public Map getJobEvaluation(String id) {
@@ -111,27 +82,27 @@ public class SearchService {
     }
 
 
-    private boolean createEvaluation(List<Evaluation> list, String type) {
+    public boolean createEvaluation(List<Evaluation> list) {
         if (list == null || list.isEmpty()) {
             return false;
         }
         BulkRequestBuilder bulkRequestBuilder = transportClient.prepareBulk();
         list.forEach(evaluation -> {
 
-            bulkRequestBuilder.add(transportClient.prepareIndex(INDEX, type, evaluation.getId()).setSource(JSON.toJSONString(evaluation)));
+            bulkRequestBuilder.add(transportClient.prepareIndex(INDEX, evaluation.getType(), evaluation.getId()).setSource(JSON.toJSONString(evaluation)));
         });
         BulkResponse bulkItemResponses = bulkRequestBuilder.execute().actionGet();
         return true;
     }
 
 
-    private boolean updateEvaluation(List<Evaluation> list, String type) {
+    public boolean updateEvaluation(List<Evaluation> list) {
         if (list == null || list.isEmpty()) {
             return false;
         }
         BulkRequestBuilder bulkRequestBuilder = transportClient.prepareBulk();
         list.forEach(evaluation -> {
-            bulkRequestBuilder.add(transportClient.prepareUpdate(INDEX, type, evaluation.getId()).setDoc(JSON.toJSONString(evaluation)));
+            bulkRequestBuilder.add(transportClient.prepareUpdate(INDEX, evaluation.getType(), evaluation.getId()).setDoc(JSON.toJSONString(evaluation)));
         });
         BulkResponse bulkItemResponses = bulkRequestBuilder.execute().actionGet();
 
@@ -139,14 +110,17 @@ public class SearchService {
     }
 
 
-    private List<Map> search(String type, String key, String value, int page) {
+    private List<Map> search(String type, String key, String value, int page,int pageSize) {
+        if(pageSize>PAGE_SIZE||pageSize<0){
+            pageSize = PAGE_SIZE;
+        }
         List<Map> evaluations = new ArrayList<>();
 
         SearchResponse searchResponse = transportClient.prepareSearch(INDEX)
                 .setTypes(type)
                 .setQuery(QueryBuilders.matchQuery(key, value))
                 .setFrom(page)
-                .setSize(PAGE_SIZE)
+                .setSize(pageSize)
                 .execute()
                 .actionGet();
         for (SearchHit searchHitFields : searchResponse.getHits().getHits()) {

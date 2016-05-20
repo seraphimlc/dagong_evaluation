@@ -10,4 +10,9 @@ public class JobEvaluation extends Evaluation{
     public void setJobId(String jobId) {
         this.jobId = jobId;
     }
+
+    @Override
+    public String getType() {
+        return "job";
+    }
 }

@@ -3,7 +3,7 @@ package com.dagong.pojo;
 /**
  * Created by liuchang on 16/5/19.
  */
-public class Evaluation {
+public abstract class Evaluation {
 
     private String id;
 
@@ -18,6 +18,8 @@ public class Evaluation {
     private String info;
 
     private Integer status;
+
+    public abstract String getType();
 
     public String getId() {
         return id;
