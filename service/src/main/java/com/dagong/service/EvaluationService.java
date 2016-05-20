@@ -172,6 +172,9 @@ public class EvaluationService {
             voList.setEndRow(pages.getEndRow());
             voList.setPageNum(pages.getPageNum());
             voList.setPages(pages.getPages());
+            voList.setPageSize(pages.getPageSize());
+            voList.setTotal(pages.getTotal());
+            voList.setStartRow(pages.getStartRow());
             pages.forEach(evaluation -> {
                 voList.add(BeanUtil.getVO(evaluation, clazz));
             });
