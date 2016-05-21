@@ -1,28 +1,12 @@
 package com.dagong.evaluation.service;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.rocketmq.common.SystemClock;
 import com.dagong.evaluation.EvaluationClient;
 import com.dagong.evaluation.vo.CompanyEvaluationVO;
 import com.dagong.evaluation.vo.JobEvaluationVO;
 import com.dagong.evaluation.vo.UserEvaluationVO;
 import com.dagong.evaluation.vo.VOList;
-import com.dagong.job.JobClient;
-import com.dagong.job.vo.JobVO;
-import com.dagong.mapper.CompanyEvaluationMapper;
-import com.dagong.mapper.JobEvaluationMapper;
-import com.dagong.mapper.UserEvaluationMapper;
-import com.dagong.pojo.CompanyEvaluation;
-import com.dagong.pojo.Job;
-import com.dagong.pojo.JobEvaluation;
-import com.dagong.pojo.UserEvaluation;
 import com.dagong.service.EvaluationService;
-import com.dagong.service.SearchService;
-import com.dagong.user.UserClient;
-import com.dagong.user.vo.UserVO;
-import com.dagong.util.IdGenerator;
-import com.github.pagehelper.PageHelper;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -64,7 +48,7 @@ public class EvaluationClientImpl implements EvaluationClient {
     }
 
     @Override
-    public VOList<UserEvaluationVO> getUserEvaluationForCompanyUser(String companyId, int page, int pageSize) {
+    public VOList<UserEvaluationVO> getUserEvaluationForCompany(String companyId, int page, int pageSize) {
         return evaluationService.getUserEvaluationForCompany(companyId,page,pageSize);
     }
 

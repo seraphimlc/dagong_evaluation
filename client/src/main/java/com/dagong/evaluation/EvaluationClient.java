@@ -25,7 +25,7 @@ public interface EvaluationClient {
 
     public VOList<JobEvaluationVO> getJobEvaluationForUser(String userId, int page, int pageSize);
 
-    public VOList<UserEvaluationVO> getUserEvaluationForCompanyUser(String companyId, int page, int pageSize);
+    public VOList<UserEvaluationVO> getUserEvaluationForCompany(String companyId, int page, int pageSize);
 
 
     public List<Map> getCompanyEvaluation(String companyId, int page, int pageSize);

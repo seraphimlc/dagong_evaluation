@@ -17,9 +17,6 @@
     </bean>
 
 
-    <bean id="evaluationMessageSender" class="com.dagong.mq.SendMessageWrapper">
-        <property name="topic" value="evaluation"/>
-    </bean>
 
 
 </beans>
