@@ -68,5 +68,10 @@
                   value="172.16.54.144:2181"/>
     </bean>
 
+    <bean id="redisConfiguration" class="com.dagong.util.ServiceConfiguration">
+        <property name="ip" value="172.16.54.144"/>
+        <property name="port" value="6379"/>
+    </bean>
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
