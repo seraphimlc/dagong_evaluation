@@ -3,11 +3,10 @@ package com.dagong.mq;
 import com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer;
 import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.common.consumer.ConsumeFromWhere;
-import com.dagong.util.ServiceConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -18,8 +17,8 @@ import java.util.UUID;
 @Service
 public class ReceiveMessageManager {
 
-    @Resource(name = "mqConfiguration")
-    private ServiceConfiguration mqConfiguration;
+    @Value("${rocketmq.address}")
+    private String mqAddress;
 
     private List<MessageProcessor> messageProcessorList = new ArrayList<>();
     private List<DefaultMQPushConsumer> consumerList = new ArrayList<>();
@@ -31,7 +30,7 @@ public class ReceiveMessageManager {
 
     private DefaultMQPushConsumer createMessageConsumer(MessageProcessor messageProcessor) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumber_" + UUID.randomUUID().toString());
-        consumer.setNamesrvAddr(mqConfiguration.getServiceAddr());
+        consumer.setNamesrvAddr(mqAddress);
         consumer.subscribe(messageProcessor.getTopic(), messageProcessor.getTag());
         consumer.setVipChannelEnabled(false);
         consumer.setPullInterval(1000);

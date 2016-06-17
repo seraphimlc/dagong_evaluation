@@ -7,12 +7,11 @@ import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
 import com.alibaba.rocketmq.client.producer.SendResult;
 import com.alibaba.rocketmq.common.message.Message;
 import com.alibaba.rocketmq.remoting.exception.RemotingException;
-import com.dagong.util.ServiceConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 import java.util.UUID;
 
 /**
@@ -21,14 +20,14 @@ import java.util.UUID;
 @Service
 public class SendMessageService {
 
-    @Resource(name = "mqConfiguration")
-    private ServiceConfiguration mqConfiguration;
+    @Value("${rocketmq.address}")
+    private String mqAddress;
     private DefaultMQProducer defaultMQProducer;
 
     @PostConstruct
     public void init() throws MQClientException {
         defaultMQProducer = new DefaultMQProducer("Producer_"+System.currentTimeMillis());
-        defaultMQProducer.setNamesrvAddr(mqConfiguration.getServiceAddr());
+        defaultMQProducer.setNamesrvAddr(mqAddress);
         defaultMQProducer.setVipChannelEnabled(false);
         defaultMQProducer.start();
     }

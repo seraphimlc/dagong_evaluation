@@ -6,9 +6,10 @@
 
     <dubbo:application name="dagong-evaluation"/>
 
-    <dubbo:registry protocol="zookeeper" address="172.16.54.144:2181"/>
 
-    <dubbo:protocol name="dubbo" port="-1"/>
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.ip}"/>
+
+    <dubbo:protocol host="${host.ip}" name="dubbo" port="-1"/>
 
     <!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 -->
     <dubbo:annotation package="com.dagong.evaluation.service" />
